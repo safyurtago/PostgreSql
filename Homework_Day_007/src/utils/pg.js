@@ -3,11 +3,12 @@ const {Pool} = require('pg')
 const config = require('../../config')
 
 const pool = new Pool({
-    user: "postgres",
-    host: "localhost",
-    database: "servicetransaction",
-    password: "admin",
-    port: 5432,
+    connectionString: "postgres://postgres:admin@localhost:5432/servicetransaction"
+    // user: "postgres",
+    // host: "localhost",
+    // database: "servicetransaction",
+    // password: "admin",
+    // port: 5432,
 });
 
 const fetch = async (SQL, ...values) => {
