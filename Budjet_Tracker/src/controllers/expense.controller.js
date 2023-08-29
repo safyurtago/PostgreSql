@@ -11,7 +11,7 @@ const create = async (req, res, next) => {
         const resultValidation = await expenseValidator.create({category_id, amount});
         if (resultValidation.error) { throw new CustomError(resultValidation.error.message, 400)};
         const user = await knex('users').select('*').where({id: user_id}).first();
-        await knex('users').update({balance: user.balance + amount}).where({id: user_id});
+        await knex('users').update({balance: user.balance - amount}).where({id: user_id});
         const expense = await knex('expenses').insert({user_id, category_id, amount}).returning('*');
         // await trx.commit();
         res.status(201).json({message: 'Successfully created', data: expense});
