@@ -40,6 +40,7 @@ const getAll = async (req, res, next) => {
         res.status(200).json({message: "Data found", data})
 
     } catch (error) {
+        console.log(error);
         next(error)
     }
 }
